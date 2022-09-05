@@ -1,0 +1,30 @@
+<div class="row">
+    <div class ="col-sm-8"></div>
+    <div class="col-sm-4">
+        <a href="/" class="btn btn-primary col-sm-3">My Profile</a>
+        <a href="/Logout" class="btn btn-danger col-sm-3">logout</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm">
+        <h4>Users you may want to connect with :</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var perdorues in ViewBag.perdoruesit)
+                {
+                    <tr>
+                        <td><a href="/User/@perdorues.UserId">@perdorues.FirstName </a></td>
+                        <td><a href="/Connect/@perdorues.UserId">Connect</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

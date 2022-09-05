@@ -1,0 +1,66 @@
+﻿<div class="row">
+    <div class="col-sm-8"></div>
+    <h1 class="display-4 col-sm-8">Hi @ViewBag.iLoguari.FirstName</h1>
+    <div class="col-sm-4">
+        <a href="/AllUser" class="btn btn-primary col-sm-3">All User</a>
+        <a href="/Logout" class="btn btn-danger col-sm-3">logout</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5">
+        <h4>Here is your Profile Description :</h4>
+        <p class="border">@ViewBag.iLoguari.Description</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5">
+        <h4>Your Professional Network :</h4>
+        @foreach (var miqte in ViewBag.miqte)
+        {
+            @if (@miqte.SenderId == ViewBag.iLoguari.UserId)
+                {
+                    <tr>
+                        <td>
+                            <p> <a href="/User/@miqte.ReciverId"> @miqte.Reciver.FirstName</a> | <a href="/DeclineR/@miqte.RequestId" >  Delete  </a> </p>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td> 
+                            <p><a href="/User/@miqte.SenderId">@miqte.Sender.FirstName</a> |  <a href="/DeclineR/@miqte.RequestId" >Delete</a></p>
+                        </td>
+                    </tr>           
+                }
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-5">
+        <h4>Invitations :</h4>
+        <p>The following people asked you to be their Network</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in ViewBag.requests)
+                {
+                    <tr>
+                        <td>@request.Sender.FirstName </td>
+                        <td><a href="/AcceptR/@request.RequestId" class=" btn btn-primary">Accept Invite </a>
+                            <a href="/DeclineR/@request.RequestId" class="btn btn-danger"> Ignore </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
